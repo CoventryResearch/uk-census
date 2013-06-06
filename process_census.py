@@ -9,7 +9,7 @@ rows = [row for row in reader]
 print ' '
 
 
-print 'Creating postcode to output area lookup table.'
+print 'Creating postcode to output area lookup table.' # Currently the bottleneck
 p = re.compile('[A-Z]+') # This regex pulls out the first two (or one) letters of the postcode.
 postcode_oacode_dict = {}
 for row in rows:
@@ -33,7 +33,7 @@ print 'Reading Geolytix Census data'
 reader = csv.reader(open('data/Census11Data.txt', 'rb'), delimiter='\t')
 headers = reader.next() # Skip header
 censusdata = [row for row in reader]
-ncensusvariables = len(censusdata[0][4:]) # Dropping first four columns
+ncensusvariables = len(censusdata[0][4:]) # Dropping first four columns (OAID OA popX popY)
 print 'Number of census variables = ',ncensusvariables
 print ' '
 
@@ -50,7 +50,7 @@ print ' '
 print 'Summing output area census data in postcode areas.'
 output_data = []
 out = csv.writer(open("census_by_postcodearea.csv","w"), delimiter=',',quotechar=' ')
-out.writerow(headers[4:])
+out.writerow(['PostArea']+headers[4:])
 for postcode in postcode_oacode_dict.keys():
 	postcodetotal = np.zeros(ncensusvariables)
 	for oacode in postcode_oacode_dict[postcode]:
