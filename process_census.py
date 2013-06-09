@@ -9,11 +9,12 @@ rows = [row for row in reader]
 print ' '
 
 
-print 'Creating postcode to output area lookup table.' # Currently the bottleneck
-p = re.compile('[A-Z]+') # This regex pulls out the first two (or one) letters of the postcode.
+print 'Creating postcode to output areas lookup table.' # Currently the bottleneck
+p = re.compile('[A-Z]+')  # This regex pulls out the first two (or one) letters of the postcode.
+p = re.compile('([^\s]+)') # This regex pulls out the first word before a space (i.e. The first half of a postcode)
 postcode_oacode_dict = {}
 for row in rows:
-	postcode = row[0]
+	postcode = row[1]
 	oacode = row[2]
 	m = p.match(postcode)
 	postcode_area = m.group()
@@ -49,7 +50,8 @@ print ' '
 
 print 'Summing output area census data in postcode areas.'
 output_data = []
-out = csv.writer(open("census_by_postcodearea.csv","w"), delimiter=',',quotechar=' ')
+# out = csv.writer(open("census_by_postcodearea.csv","w"), delimiter=',',quotechar=' ')
+out = csv.writer(open("census_by_postcodedistrict.csv","w"), delimiter=',',quotechar=' ')
 out.writerow(['PostArea']+headers[4:])
 for postcode in postcode_oacode_dict.keys():
 	postcodetotal = np.zeros(ncensusvariables)
