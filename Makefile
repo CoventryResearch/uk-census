@@ -1,14 +1,9 @@
 GEOLYTIX=http://geolytix.co.uk/images/
 
 AREACODES = MSOACode LSOACode LADCode WardCode SecLGCode FmCntyCode PCOCode SHACode ConstCode RegionCode
+# Area codes are documented here: http://geolytix.co.uk/images/PDFs/GeoData-Census2011UG.pdf
 
 all: $(addprefix data/Census11_by_, $(addsuffix .csv, $(AREACODES)))
-
-# Look up table is missing MSOA codes for some Northern Ireland OAs
-#
-# [N00000001 N00000002 N00000003 ..., N00004535 N00004536 N00004537] /No MSOA codes
-
-# What is ConstCode RegionCode
 
 clean: rm -rf data log
 
