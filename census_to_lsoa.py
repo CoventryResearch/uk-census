@@ -3,6 +3,7 @@ import numpy as np
 import time
 import logging
 import sys
+import csv
 
 category = sys.argv[1]
 
@@ -48,6 +49,6 @@ df = df.reindex(columns=pd.Index([category]).append(df.columns - [category]))
 
 outfile = 'data/Census11_by_'+category+'.csv'
 print 'Writing to ' + outfile
-df.to_csv(outfile, sep=',', index_label='index')
+df.to_csv(outfile, sep=',', index_label='index')#, quoting=csv.QUOTE_NONNUMERIC)
 
 print 'Done'
