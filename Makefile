@@ -5,7 +5,8 @@ AREACODES = MSOACode LSOACode LADCode WardCode SecLGCode FmCntyCode PCOCode SHAC
 
 all: $(addprefix data/Census11_by_, $(addsuffix .csv, $(AREACODES)))
 
-clean: rm -rf data log
+clean:
+	rm -rf data log
 
 data/%.zip:
 	mkdir -p $(dir $@) && wget $(GEOLYTIX)/$(notdir $@) -O $@.download && mv $@.download $@
