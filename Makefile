@@ -1,7 +1,10 @@
 GEOLYTIX=http://geolytix.co.uk/images/
 
-AREACODES = MSOACode LSOACode LADCode WardCode SecLGCode FmCntyCode PCOCode SHACode ConstCode RegionCode
 # Area codes are documented here: http://geolytix.co.uk/images/PDFs/GeoData-Census2011UG.pdf
+#                                 http://geolytix.co.uk/images/PDFs/GD2011CensusUG_UK.pdf
+AREACODES = LSOACode MSOACode LADCode WardCode PCOCode SHACode RegionCode
+#SecLGCode FmCntyCode ConstCode
+
 
 all: $(addprefix data/Census11_by_, $(addsuffix .csv, $(AREACODES)))
 

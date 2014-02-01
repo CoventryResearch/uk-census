@@ -13,13 +13,10 @@ print "Opening log file " + logfile
 logging.basicConfig(filename=logfile, level=logging.DEBUG)
 
 lookupfile = sys.argv[2]
-# "data/OA11LookUp.txt"
 print 'Reading lookup file ' + lookupfile
 lookupdata = pd.read_csv(lookupfile, delimiter='\t')
-# lookupdata = lookupdata[0:999]
 
 censusfile = sys.argv[3]
-# 'data/Census11Data.txt'
 print 'Reading census file '+censusfile
 censusdata = pd.read_csv(censusfile, delimiter='\t', na_values=[-1])
 for col in ['oaid', 'popx', 'popy']:
