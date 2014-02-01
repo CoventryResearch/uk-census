@@ -17,7 +17,7 @@ data/%.txt: data/%.zip
 	touch $@
 
 # Currently 583 seconds, 35643 LSOAs; 124 seconds, 7202 MSOAs; 20 seconds, 374 LADCode
-data/Census11_by_%.csv: data/OA11LookUp.txt data/Census11Data.txt census_to_lsoa.py
+data/Census11_by_%.csv: data/OA11Lookup.txt data/CensusUK11Data.txt
 	mkdir -p $(dir $@)
 	mkdir -p log
-	time python census_to_lsoa.py $*
+	time python census_to_lsoa.py $* $^

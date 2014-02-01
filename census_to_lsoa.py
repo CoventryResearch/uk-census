@@ -6,17 +6,20 @@ import sys
 import csv
 
 category = sys.argv[1]
+print category
 
 logfile = 'log/census_to_' + category + '.log'
 print "Opening log file " + logfile
 logging.basicConfig(filename=logfile, level=logging.DEBUG)
 
-lookupfile = "data/OA11LookUp.txt"
-print 'Reading lookup file' + lookupfile
+lookupfile = sys.argv[2]
+# "data/OA11LookUp.txt"
+print 'Reading lookup file ' + lookupfile
 lookupdata = pd.read_csv(lookupfile, delimiter='\t')
 # lookupdata = lookupdata[0:999]
 
-censusfile = 'data/Census11Data.txt'
+censusfile = sys.argv[3]
+# 'data/Census11Data.txt'
 print 'Reading census file '+censusfile
 censusdata = pd.read_csv(censusfile, delimiter='\t', na_values=[-1])
 for col in ['oaid', 'popx', 'popy']:
